@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sentiment Analysis by smart_hack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<link href="{{ url_for('static', filename='css/form_style.css') }}" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=Niconne' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,500,700,900,400italic' rel='stylesheet' type='text/css'>
+
+</head>
+<body>
+
+	<div class="main">
+		<h1>Input Search Query</h1>
+		<div class="main-row">
+			<div class="w3ls-contact">
+				<img src="{{url_for('static', filename='img/hack_logo.png')}}">
+				<form action="/search" method="POST">
+					<h4>Keyword</h4>
+					<input type="text" id="bas_search" name="keyword"  placeholder="Ex: COVID-19" autocomplete="off" >
+					<h4>Max no. of Tweets</h4>
+					<input type="number" id="maxt" name="max" required="" value=100 >
+					<h4>Max no. of words in WordCloud</h4>
+					<input type="number" id="maxwc" name="wc" required="" value=20 >
+					<h4>From</h4>
+					<input type="date" id="cal_date" name="sdate" required="" >
+					<input type="submit"  value="Search" onclick="loading_gif();">
+					<input id="covid_" type="submit" value="Search for COVID-19" onclick="set_s_val();">
+					<div class="clear"> </div>
+				</form>
+				<script>
+					function set_status(prg) {
+						console.log("{{ session['stage'] }}")
+							if("{{ session['stage'] }}" == "0"){
+								prg.innerHTML = "Getting Data...";
+							}
+							else if ("{{ session['stage'] }}" == "1") {
+								prg.innerHTML = "Cleaning Data...";
+							}
+							else {
+								prg.innerHTML = "Analyzing...";
+							}
+						}
+
+					function set_s_val() {
+						var inputF = document.getElementById("bas_search");
+						inputF.value = "";
+						inputF.required = false;
+						
+						var date = document.getElementById("cal_date");
+						var tn = document.getElementById("maxt");
+						var wcn = document.getElementById("maxwc");
+
+						if (date.value != "" && tn.value != "" && wcn.value != "") {
+							$('#loader').show()
+							//setInterval(function () { set_status( document.getElementById("main_progress") ); }, 10);
+						}
+				
+					}
+					
+					function loading_gif()
+					{
+						var form = document.getElementById("bas_search");
+						var date = document.getElementById("cal_date");
+						var tn = document.getElementById("maxt");
+						var wcn = document.getElementById("maxwc");
+						form.required = true;
+
+						if(form.value != "" && date.value != "" && tn.value != "" && wcn.value !="" )
+						{
+							$('#loader').show()
+							//setInterval(function(){ set_status( document.getElementById("main_progress") ); }, 10);
+						}
+					}
+				</script>
+			</div>	
+		</div>	
+		<div id="loader" align="middle" style="display:none">
+		<div id="loadingcircle" align="middle" ></div>
+			<p id="main_progress" >Analyzing...</p>
+		</div>
+	</div>	
+</body>
+</html>

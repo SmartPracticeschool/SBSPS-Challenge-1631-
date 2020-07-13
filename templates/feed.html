@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Sentiment Analysis by smart_hack</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+ 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+   
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/light-bootstrap-dashboard.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/addtn.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/demo.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
+
+            <div class="sidebar-wrapper">
+                <div class="logo" align="middle">
+                    UPDATES
+                </div>
+                <ul class="nav">
+                    <li>
+                        <a class="nav-link" href="./dshb">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./twfeed">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Twitter Feed</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./maps">
+                            <i class="nc-icon nc-pin-3"></i>
+                            <p>Map</p>
+                        </a>
+                    </li>
+                    <li >
+                        <a class="nav-link" href="./tweets">
+                            <i class="nc-icon nc-chat-round"></i>
+                            <p>Tweets</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <div align = "middle" style=" position: relative; left:20%; width: 60%;"class="content">
+                <a class="twitter-timeline" href="https://twitter.com/COVIDNewsByMIB?ref_src=twsrc%5Etfw">Tweets by COVIDNewsByMIB</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+            
+        </div>
+    </div>
+    
+</body>
+
+
+</html>

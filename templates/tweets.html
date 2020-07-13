@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Sentiment Analysis by smart_hack</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/light-bootstrap-dashboard.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/addtn.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/demo.css') }}" rel="stylesheet" />
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/animate.css') }}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/select2.min.css') }}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css') }}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+    <!--===============================================================================================-->
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
+
+            <div class="sidebar-wrapper">
+                <div class="logo" align="middle">
+                    DISCUSSION
+                </div>
+                <ul class="nav">
+                    <li>
+                        <a class="nav-link" href="./dshb">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./twfeed">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Twitter Feed</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./maps">
+                            <i class="nc-icon nc-pin-3"></i>
+                            <p>Map</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./tweets">
+                            <i class="nc-icon nc-chat-round"></i>
+                            <p>Tweets</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <div class="limiter">
+                <div class="container-table100">
+                    <div class="wrap-table100">
+                        <div class="table100">
+                            <table>
+                                <thead>
+                                    <p style="color:white;"><span style="color: red;" >*</span> Note : The raw tweets are pre-processed before being transferred model before prediction</p>
+                                    <tr class="table100-head">
+                                        <th style="position: relative; text-align: center;">Raw Tweets</th>
+                                        <th style="position: relative; text-align: center;">Prediction</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for item in tw_list %}
+
+                                    <tr>
+                                        <td class="column1" style="position: relative; text-align: center;">{{ item[0] }}
+                                        </td>
+                                        <td class="column2" style="position: relative; text-align: center;">{{ item[1] }}
+                                        </td>
+
+                                    </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+
+</html>

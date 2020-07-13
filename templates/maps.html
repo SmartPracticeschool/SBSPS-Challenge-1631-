@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Sentiment Analysis by smart_hack</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/light-bootstrap-dashboard.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/addtn.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/demo.css') }}" rel="stylesheet" />
+</head>
+
+<body scroll=0 style=" overflow-y: hidden !important;">
+    <div class="wrapper">
+        <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
+
+            <div class="sidebar-wrapper">
+                <div class="logo" align="middle">
+                    TRACK COVID
+                </div>
+                <ul class="nav">
+                    <li>
+                        <a class="nav-link" href="./dshb">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="./twfeed">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Twitter Feed</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./maps">
+                            <i class="nc-icon nc-pin-3"></i>
+                            <p>Map</p>
+                        </a>
+                    </li>
+                    <li >
+                        <a class="nav-link" href="./tweets">
+                            <i class="nc-icon nc-chat-round"></i>
+                            <p>Tweets</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div align="middle" class="main-panel">
+
+
+            <image height="700" width="700" style="position: relative; top:-35%; left:26%; "
+                src="{{ url_for('static', filename='img/india.svg') }}">
+
+                <svg height="800" width="800" style="position: relative; top:10%; right:20%">
+
+                    {% for item in data %}
+
+                    <circle cx="{{ loc[item['loc']][0] }}" cy="{{ loc[item['loc']][1] }}"
+                        r="{{ rmap[bisect(ranges, item['totalConfirmed'])] }}" fill=red stroke="red" stroke-width="6"
+                        style="opacity:0.6;" />
+
+                    {% endfor %}
+
+                </svg>
+
+        </div>
+        <div class="state-info">
+            {% set count = [0] %}
+            {% for i in data %}
+
+            <div class="card-col scard{{ count[0] }}" style="display: none;">
+                <div class="card">
+                    <div style="padding-top: 8.5px;" class="card-content white-text">
+                        <span class="card-title">{{ i['loc'] }}</span>
+                        <br>
+                        <ul style="padding-top: 10px;" id="state-record">
+                            <li>Confirmed Indian Cases : {{ i['confirmedCasesIndian'] }}</li>
+                            <li>Confirmed Foreign Cases : {{ i['confirmedCasesForeign'] }}</li>
+                            <li>Discharged : {{ i['discharged'] }}</li>
+                            <li>Deaths : {{ i['deaths'] }}</li>
+                            <li>Total Confirmed : {{ i['totalConfirmed'] }}</li>
+                        </ul>
+                    </div>
+                    <div align="middle" class="card-action">
+                        <button onclick="decr('{{ count[0] }}')"> <i class="nc-icon nc-stre-left"></i> </button>
+                        <div id="meowlol"></div> 
+                        <button onclick="incr('{{ count[0] }}')"> <i class="nc-icon nc-stre-right"></i> </button>
+                        <div style="padding-bottom: 10px;"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            {% if count.append(count.pop() + 1) %}{% endif %}
+            {% endfor %}
+
+
+
+        </div>
+        <script>
+            function incr(ind) {
+                if (parseInt(ind, 10) < 34) {
+                    let a = document.getElementsByClassName("card-col");
+                    for (let i of a) {
+                        i.style.display = "none";
+                    }
+
+                    let b = document.getElementsByClassName("scard" + (parseInt(ind, 10) + 1).toString())[0];
+                    b.style.display = "block";
+                }
+            }
+            function decr(ind) {
+                if (parseInt(ind, 10) > 0) {
+                    let a = document.getElementsByClassName("card-col");
+                    for (let i of a) {
+                        i.style.display = "none";
+                    }
+
+                    let b = document.getElementsByClassName("scard" + (parseInt(ind, 10) - 1).toString())[0];
+                    b.style.display = "block";
+                }
+            }
+
+            incr(-1);
+        </script>
+
+    </div>
+
+</body>
+
+
+</html>
