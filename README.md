@@ -1,6 +1,6 @@
 # Sentiment Analysis of COVID-19 Tweets
 
-## Project demonstration : https://www.youtube.com/watch?v=ADPPpY6ZEI8&feature=youtu.be
+## Project demonstration : https://www.youtube.com/watch?v=RWGBT23zyUA&feature=youtu.be
 
 ## Final report in the repo under the name 'final_report.pdf'
 
